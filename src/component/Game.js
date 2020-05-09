@@ -3,6 +3,7 @@ import Tile from './Tile';
 import '../App.css';
 import Constants from '../constants/Constants';
 import StyleConstants from '../constants/StyleConstants';
+import Status from './Status';
 
 const Game = () => {
     const [state, setState] = useState({
@@ -28,6 +29,9 @@ const Game = () => {
 
     return (
         <div>
+            <div className={StyleConstants.STATUS}>
+                <Status currentPlayer={state.isNextSymbolX ? Constants.SYMBOL_X : Constants.SYMBOL_O} />
+            </div>
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}
             </ul>

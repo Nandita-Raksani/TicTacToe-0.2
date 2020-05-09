@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from '../component/Game';
 import Tile from '../component/Tile';
+import Status from '../component/Status'
 import { shallow, mount } from 'enzyme';
 
 describe(("<Game/> component"), () => {
@@ -47,5 +48,20 @@ describe(("<Game/> component functionality"), () => {
         wrapper.find(Tile).at(0).find('button').simulate('click');
         wrapper.find(Tile).at(1).find('button').simulate('click');
         expect(wrapper.find(Tile).at(1).find('button').text()).toBe(EXPECT_PLAYER_O);
+    })
+
+    it("Should display the status of game with next player turn", () => {
+        const EXPECT_PLAYER_X_INITIALLY = 'Next Player : X';
+        expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_INITIALLY);
+        wrapper.find(Tile).at(0).find('button').simulate('click');
+
+        const EXPECT_PLAYER_O_SECOND_TURN = 'Next Player : O';
+        expect(wrapper.find(Tile).at(0).find('button').text()).toBe('X');
+        expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_O_SECOND_TURN);
+
+        const EXPECT_PLAYER_X_THIRD_TURN = 'Next Player : X';
+        wrapper.find(Tile).at(1).find('button').simulate('click');
+        expect(wrapper.find(Tile).at(1).find('button').text()).toBe('O');
+        expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_THIRD_TURN);
     })
 });
