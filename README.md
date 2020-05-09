@@ -68,3 +68,34 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+# Reports
+
+Test Coverage Report
+
+PASS  src/test/Status.test.js (13.604s)
+PASS  src/test/Game.test.js (5.507s)
+PASS  src/test/App.test.js
+PASS  src/test/Tile.test.js
+
+|File            |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+|----------------|----------|----------|----------|----------|-------------------|
+|All files            |      100 |      100 |      100 |      100 |                   |
+| src                 |      100 |      100 |      100 |      100 |                   |
+| App.js             |      100 |      100 |      100 |      100 |                   |
+|src/component       |      100 |      100 |      100 |      100 |                   |
+|Game.js            |      100 |      100 |      100 |      100 |                   |
+|Status.js          |      100 |      100 |      100 |      100 |                   |
+|Tile.js            |      100 |      100 |      100 |      100 |                   |
+|src/constants       |      100 |      100 |      100 |      100 |                   |
+|Constants.js       |      100 |      100 |      100 |      100 |                   |
+|StyleConstants.js  |      100 |      100 |      100 |      100 |                   |
+|src/helper          |      100 |      100 |      100 |      100 |                   |
+| DetermineWinner.js |      100 |      100 |      100 |      100 |                   |
+---------------------|----------|----------|----------|----------|-------------------|
+
+Test Suites: 4 passed, 4 total
+Tests:       42 passed, 42 total
+Snapshots:   4 passed, 4 total
+Time:        29.62s
+Ran all test suites.
