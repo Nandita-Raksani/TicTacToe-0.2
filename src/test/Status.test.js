@@ -3,14 +3,18 @@ import { shallow } from 'enzyme';
 import Status from '../component/Status';
 
 describe(("<Status/> component"), () => {
-    it("should render correctly", () => {
+    let wrapper;
+    
+    beforeEach(() => {
         const board = ['', '', '', '', '', '', '', '', ''];
-        const wrapper = shallow(<Status currentPlayer='X' board={board}/>);
+        wrapper = shallow(<Status currentPlayer='X' board={board}/>);
+    });
+
+    it("should render correctly", () => {
         expect(wrapper).toMatchSnapshot();
     });
+
     it("should have the label to display game status", () => {
-        const board = ['', '', '', '', '', '', '', '', ''];
-        const wrapper = shallow(<Status currentPlayer='X' board={board}/>);
         expect(wrapper.find("label")).toBeDefined();
     });
 });
