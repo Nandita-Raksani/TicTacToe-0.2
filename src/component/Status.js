@@ -15,7 +15,7 @@ const Status = (props) => {
                 setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
                 onPlayerWon(winner.positions);
             } else if (draw) {
-                setState((prevState) => ({ ...prevState, gameStatus: "Game is draw!" }));
+                setState((prevState) => ({ ...prevState, gameStatus: Constants.GAME_DRAW }));
                 onPlayerWon();
             } else {
                 setState((prevState) => ({ ...prevState, gameStatus: Constants.NEXT_PLAYER + (currentPlayer) }));
@@ -27,7 +27,7 @@ const Status = (props) => {
     }, [props])
 
     const isDraw = (board) => {
-        return board.indexOf(Constants.EMPTY_VALUE) === -1;
+        return board.indexOf(Constants.EMPTY_VALUE) === Constants.INDEX_NOT_FOUND;
     };
 
     return (
