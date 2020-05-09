@@ -17,6 +17,9 @@ describe(("<Game/> component"), () => {
 
     it("should render styles correctly", () => {
         expect(wrapper.find("ul").hasClass('board')).toBeTruthy();
+        expect(wrapper.find("div").at(1).hasClass('status')).toBeTruthy();
+        expect(wrapper.find("div").at(2).hasClass('restart')).toBeTruthy();
+        expect(wrapper.find('button').hasClass('restart-button')).toBeTruthy();
     })
 });
 
@@ -102,6 +105,7 @@ describe(("<Game/> component functionality"), () => {
         const EXPECT_PLAYER_X_INITIALLY = 'Next Player : X';
         const positions = [0, 3, 1, 4, 2];
         simulateButtonClick(positions);
+        expect(wrapper.find('button').at(9).text()).toBe('Reset');
         wrapper.find('button').at(9).simulate('click');
         const tileList = wrapper.find(Tile);
         tileList.forEach(tile => {
