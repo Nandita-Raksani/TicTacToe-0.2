@@ -1,7 +1,6 @@
 const determineWinner = (board) => {
     return isRowCompletedByAPlayer(board) || isColumnCompletedByAPlayer(board)
-        || isUpperLeftToLowerRightDiagonalCompletedByAPlayer(board)
-        || isUpperRightToLowerLeftDiagonalCompletedByAPlayer(board);
+        || isDiagonalCompletedByAPlayer(board);
 };
 
 const isFirstRowCompletedByAPlayer = (board) => {
@@ -45,6 +44,11 @@ const isUpperLeftToLowerRightDiagonalCompletedByAPlayer = (board) => {
 const isUpperRightToLowerLeftDiagonalCompletedByAPlayer = (board) => {
     return isPositionsOccupiedBySamePlayer(board, [2, 4, 6]);
 };
+
+const isDiagonalCompletedByAPlayer = (board) => {
+    return isUpperLeftToLowerRightDiagonalCompletedByAPlayer(board)
+      || isUpperRightToLowerLeftDiagonalCompletedByAPlayer(board);
+  };
 
 const isPositionsOccupiedBySamePlayer = (board, positions) => {
     const [a, b, c] = positions;
