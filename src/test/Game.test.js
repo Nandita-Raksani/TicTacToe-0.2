@@ -38,29 +38,29 @@ describe(("<Game/> component functionality"), () => {
 
     it("Should always assign first move to Player X", () => {
         const EXPECT_PLAYER_X = 'X';
-        wrapper.find(Tile).at(0).find('button').simulate('click');
+        simulateButtonClick([0]);
         expect(wrapper.find(Tile).at(0).find('button').text()).toBe(EXPECT_PLAYER_X);
     })
 
 
     it("Should assign the next move to Player O", () => {
         const EXPECT_PLAYER_O = 'O';
-        wrapper.find(Tile).at(0).find('button').simulate('click');
-        wrapper.find(Tile).at(1).find('button').simulate('click');
+        const positions = [0, 1];
+        simulateButtonClick(positions);
         expect(wrapper.find(Tile).at(1).find('button').text()).toBe(EXPECT_PLAYER_O);
     })
 
     it("Should display the status of game with next player turn", () => {
         const EXPECT_PLAYER_X_INITIALLY = 'Next Player : X';
         expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_INITIALLY);
-        wrapper.find(Tile).at(0).find('button').simulate('click');
-
+        simulateButtonClick([0]);
+       
         const EXPECT_PLAYER_O_SECOND_TURN = 'Next Player : O';
         expect(wrapper.find(Tile).at(0).find('button').text()).toBe('X');
         expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_O_SECOND_TURN);
 
         const EXPECT_PLAYER_X_THIRD_TURN = 'Next Player : X';
-        wrapper.find(Tile).at(1).find('button').simulate('click');
+        simulateButtonClick([1]);
         expect(wrapper.find(Tile).at(1).find('button').text()).toBe('O');
         expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_THIRD_TURN);
     })
