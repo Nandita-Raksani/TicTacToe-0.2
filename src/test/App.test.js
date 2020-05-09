@@ -1,5 +1,6 @@
 import React from 'react';
 import App from '../App';
+import Game from '../component/Game';
 import { shallow } from 'enzyme';
 
 describe(("<App/> component"), () => {
@@ -18,6 +19,11 @@ describe(("<App/> component"), () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find("div").hasClass('App')).toBeTruthy();
     expect(wrapper.find("header").hasClass('App-header')).toBeTruthy();
+  });
+
+  it("should load Game component", () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(Game)).toBeDefined();
   });
 
 });
