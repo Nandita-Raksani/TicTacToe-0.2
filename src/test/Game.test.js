@@ -75,4 +75,16 @@ describe(("<Game/> component functionality"), () => {
         expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_WINNER);
     });
 
+    it("Should not allow next turn to be played on game over", () => {
+        wrapper.find(Tile).at(0).find('button').simulate('click');
+        wrapper.find(Tile).at(3).find('button').simulate('click');
+        wrapper.find(Tile).at(1).find('button').simulate('click');
+        wrapper.find(Tile).at(4).find('button').simulate('click');
+        wrapper.find(Tile).at(2).find('button').simulate('click');
+        const tileList = wrapper.find(Tile);
+        tileList.forEach(tile => {
+            expect(tile.find('button').props()["disabled"]).toBeTruthy();
+        });
+    });
+    
 });
