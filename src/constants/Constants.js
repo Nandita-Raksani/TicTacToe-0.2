@@ -3,6 +3,7 @@ const Constants = {
     NUMBER_OF_TILES: 9,
     INITIAL_TILE_POSITION: 0,
     EMPTY_VALUE: "",
-    SYMBOL_X: "X"
+    SYMBOL_X: "X",
+    SYMBOL_O: "O"
 };
 export default Constants;
