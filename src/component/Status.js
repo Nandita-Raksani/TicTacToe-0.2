@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Constants from '../constants/Constants';
+import determineWinner from '../helper/DetermineWinner';
 
 const Status = (props) => {
     const [state, setState] = useState({});
@@ -8,7 +9,7 @@ const Status = (props) => {
     useEffect(() => {
         const getStatus = () => {
             const { board, currentPlayer, onPlayerWon } = props;
-            const winner = isFirstRowCompletedByAPlayer(board) || isSecondRowCompletedByAPlayer(board);
+            const winner = determineWinner(board);
             if (winner && winner.player) {
                 setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
                 onPlayerWon(winner.positions);
@@ -20,22 +21,6 @@ const Status = (props) => {
             getStatus();
         }
     }, [props])
-
-    const isFirstRowCompletedByAPlayer = (board) => {
-        const [a, b, c] = [0, 1, 2];
-        if (board && board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return { player: board[a], positions: [a, b, c]};
-        }
-        return null;
-    };
-
-    const isSecondRowCompletedByAPlayer = (board) => {
-        const [a, b, c] =  [3, 4, 5];
-        if (board && board[a] && board[a] === board[b] && board[a] === board[c]) {
-          return { player: board[a], positions: [a, b, c]};
-        }
-        return null;
-      };
 
     return (
         <label>{state.gameStatus}</label>
