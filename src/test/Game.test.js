@@ -40,4 +40,12 @@ describe(("<Game/> component functionality"), () => {
         wrapper.find(Tile).at(0).find('button').simulate('click');
         expect(wrapper.find(Tile).at(0).find('button').text()).toBe(EXPECT_PLAYER_X);
     })
+
+    
+    it("Should assign the next move to Player O", () => {
+        const EXPECT_PLAYER_O = 'O';
+        wrapper.find(Tile).at(0).find('button').simulate('click');
+        wrapper.find(Tile).at(1).find('button').simulate('click');
+        expect(wrapper.find(Tile).at(1).find('button').text()).toBe(EXPECT_PLAYER_O);
+    })
 });

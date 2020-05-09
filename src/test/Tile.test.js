@@ -25,4 +25,11 @@ describe(("<Tile/> component functionality"), () => {
         expect(wrapper.find('button').props()["data-symbol-color"]).toBe('X');
         expect(wrapper.find("button").text()).toEqual(EXPECT_PLAYER_X);
     });
+
+    it("should display symbol O when value passed from Game is O", () => {
+        const EXPECT_PLAYER_O = 'O';
+        const wrapper = shallow(<Tile value='O' onClick={jest.fn()}/>);
+        expect(wrapper.find('button').props()["data-symbol-color"]).toBe('O');
+        expect(wrapper.find("button").text()).toEqual(EXPECT_PLAYER_O);
+    });
 }); 

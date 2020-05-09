@@ -6,7 +6,8 @@ import StyleConstants from '../constants/StyleConstants';
 
 const Game = () => {
     const [state, setState] = useState({
-        boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE)
+        boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE),
+        isNextSymbolX: true
     });
 
     const renderBoard = () => {
@@ -21,8 +22,8 @@ const Game = () => {
 
     const handleTileClick = (position) => {
         const boardArray = state.boardArray.slice();
-        boardArray[position] = Constants.SYMBOL_X;
-        setState((prevState) => ({ ...prevState, boardArray: boardArray }));
+        boardArray[position] = state.isNextSymbolX ? Constants.SYMBOL_X : 'O';
+        setState((prevState) => ({ ...prevState, boardArray: boardArray,  isNextSymbolX: !state.isNextSymbolX }));
     }
 
     return (
