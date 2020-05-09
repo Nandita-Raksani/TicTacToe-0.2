@@ -15,7 +15,8 @@ describe(("<App/> component"), () => {
   });
 
   it("should have the title", () => {
-    expect(wrapper.find("header").text()).toEqual("Tic-Tac-Toe");
+    const EXPECT_TIC_TAC_TOE = "Tic-Tac-Toe";
+    expect(wrapper.find("header").text()).toEqual(EXPECT_TIC_TAC_TOE);
   });
 
   it("should render styles correctly", () => {

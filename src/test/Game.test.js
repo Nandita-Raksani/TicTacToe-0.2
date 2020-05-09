@@ -27,15 +27,17 @@ describe(("<Game/> component functionality"), () => {
     });
 
     it("Should render 9 empty Tiles", () => {
+        const EXPECT_EMPTY_VALUE = '';
         expect(wrapper.find(Tile).length).toBe(9);
 
         wrapper.find(Tile).forEach(square => {
-            expect(square.find('button').text()).toBe('');
+            expect(square.find('button').text()).toBe(EXPECT_EMPTY_VALUE);
         });
     })
 
     it("Should always assign first move to Player X", () => {
+        const EXPECT_PLAYER_X = 'X';
         wrapper.find(Tile).at(0).find('button').simulate('click');
-        expect(wrapper.find(Tile).at(0).find('button').text()).toBe('X');
+        expect(wrapper.find(Tile).at(0).find('button').text()).toBe(EXPECT_PLAYER_X);
     })
 });
