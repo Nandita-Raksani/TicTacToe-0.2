@@ -46,3 +46,7 @@
   cursor: default;
   border-style: dotted;
 } 
+
+button.tile-button[data-symbol-color="X"] {
+  color: red;
+} 

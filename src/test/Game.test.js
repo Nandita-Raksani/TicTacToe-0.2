@@ -28,4 +28,10 @@ describe(("<Game/> component functionality"), () => {
             expect(square.find('button').text()).toBe('');
         });
     })
+
+    it("Should always assign first move to Player X", () => {
+        let wrapper = mount(<Game />);
+        wrapper.find(Tile).at(0).find('button').simulate('click');
+        expect(wrapper.find(Tile).at(0).find('button').text()).toBe('X');
+    })
 });
