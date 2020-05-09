@@ -4,13 +4,17 @@ import Tile from '../component/Tile';
 import { shallow, mount } from 'enzyme';
 
 describe(("<Game/> component"), () => {
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = shallow(<Game />);
+    });
+
     it("should render correctly", () => {
-        let wrapper = shallow(<Game />);
         expect(wrapper).toMatchSnapshot();
     });
 
     it("should render styles correctly", () => {
-        let wrapper = shallow(<Game />);
         expect(wrapper.find("ul").hasClass('board')).toBeTruthy();
     })
 });
