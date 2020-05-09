@@ -51,4 +51,18 @@ describe(("<Status/> functionality"), () => {
         expect(onPlayerWonMockFn).toHaveBeenCalledTimes(1);
         expect(wrapper.find('label').text()).toBe(EXPECT_WINNER_X);
     })
+
+    it("should declare X as winner if second row is completely filled by X ", () => {
+        const EXPECT_PLAYER_X_WINNER = 'Winner is : X';
+        const board = ['O', '', 'O', 'X', 'X', 'X', '', '', ''];
+        const wrapper = mount(<Status currentPlayer='O' board={board} onPlayerWon={jest.fn()} isGameOver={false}/>);
+        expect(wrapper.find('label').text()).toBe(EXPECT_PLAYER_X_WINNER);
+    });
+
+    it("should declare O as winner if second row is completely filled by O ", () => {
+        const EXPECT_PLAYER_O_WINNER = 'Winner is : O';
+        const board = ['X', '', 'X', 'O', 'O', 'O', '', 'X', ''];
+        const wrapper = mount(<Status currentPlayer='X' board={board} onPlayerWon={jest.fn()} isGameOver={false}/>);
+        expect(wrapper.find('label').text()).toBe(EXPECT_PLAYER_O_WINNER);
+    });
 }); 
