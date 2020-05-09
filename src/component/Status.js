@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Constants from '../constants/Constants';
 
 const Status = (props) => {
     const getStatus = () => {
         const { currentPlayer } = props;
-        return "Next Player : " + currentPlayer;
+        return Constants.NEXT_PLAYER + currentPlayer;
     };
 
     return (
