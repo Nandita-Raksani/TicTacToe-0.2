@@ -5,6 +5,7 @@ const Constants = {
     EMPTY_VALUE: "",
     SYMBOL_X: "X",
     SYMBOL_O: "O",
-    NEXT_PLAYER: "Next Player : "
+    NEXT_PLAYER: "Next Player : ",
+    WINNER: "Winner is : "
 };
 export default Constants;

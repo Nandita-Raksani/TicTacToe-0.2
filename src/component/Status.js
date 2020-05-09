@@ -7,7 +7,7 @@ const Status = (props) => {
         const { board, currentPlayer } = props;
         const winner = isFirstRowCompletedByAPlayer(board);
         if (winner && winner.player) {
-            return "Winner is : " + winner.player;
+            return Constants.WINNER + winner.player;
         } else {
             return Constants.NEXT_PLAYER + currentPlayer;
         }
