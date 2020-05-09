@@ -6,7 +6,7 @@ import StyleConstants from '../constants/StyleConstants';
 
 const Game = () => {
     const [state, setState] = useState({
-        boardArray: Array(Constants.NUMBER_OF_TILES).fill('')
+        boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE)
     });
 
     const renderBoard = () => {
@@ -21,7 +21,7 @@ const Game = () => {
 
     const handleTileClick = (position) => {
         const boardArray = state.boardArray.slice();
-        boardArray[position] = 'X';
+        boardArray[position] = Constants.SYMBOL_X;
         setState((prevState) => ({ ...prevState, boardArray: boardArray }));
     }
 
