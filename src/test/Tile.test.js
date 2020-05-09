@@ -32,4 +32,9 @@ describe(("<Tile/> component functionality"), () => {
         expect(wrapper.find('button').props()["data-symbol-color"]).toBe('O');
         expect(wrapper.find("button").text()).toEqual(EXPECT_PLAYER_O);
     });
+
+    it("should not allow the already occupied tile to be clicked again", () => {
+        let wrapper = shallow(<Tile value='X' onClick={jest.fn()}/>);
+        expect(wrapper.find('button').props()["disabled"]).toBeTruthy();
+    });
 }); 

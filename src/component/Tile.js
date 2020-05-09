@@ -6,7 +6,7 @@ import StyleConstants from '../constants/StyleConstants';
 const Tile = (props) => {
     return (
         <button className={StyleConstants.TILE_BUTTON} onClick={props.onClick}
-            data-symbol-color={props.value}>
+            data-symbol-color={props.value} disabled={props.value}>
             {props.value}
         </button>
     );
