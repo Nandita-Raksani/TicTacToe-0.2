@@ -9,7 +9,8 @@ const Game = () => {
     const [state, setState] = useState({
         boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE),
         isNextSymbolX: true,
-        gameOver: false
+        gameOver: false,
+        winningPositions: []
     });
 
     const renderBoard = () => {
@@ -17,7 +18,8 @@ const Game = () => {
         for (let position = Constants.INITIAL_TILE_POSITION; position < Constants.NUMBER_OF_TILES; position++) {
             tileList.push(<li key={position}>
                 <Tile onClick={() => handleTileClick(position)} value={state.boardArray[position]}
-                    isGameOver={state.gameOver} />
+                    isGameOver={state.gameOver}
+                    isWinning={state.winningPositions && state.winningPositions.includes(position)} />
             </li>);
         }
         return tileList;
@@ -29,8 +31,8 @@ const Game = () => {
         setState((prevState) => ({ ...prevState, boardArray: boardArray, isNextSymbolX: !state.isNextSymbolX }));
     }
 
-    const handlePlayerWon = () => {
-        setState((prevState) => ({ ...prevState, gameOver: true }));
+    const handlePlayerWon = (winningPosition) => {
+        setState((prevState) => ({ ...prevState, gameOver: true, winningPositions: winningPosition }));
     }
 
     return (
@@ -38,7 +40,7 @@ const Game = () => {
             <div className={StyleConstants.STATUS}>
                 <Status currentPlayer={state.isNextSymbolX ? Constants.SYMBOL_X : Constants.SYMBOL_O}
                     board={state.boardArray} isGameOver={state.gameOver}
-                    onPlayerWon={() => handlePlayerWon()} />
+                    onPlayerWon={(winningPosition) => handlePlayerWon(winningPosition)} />
             </div>
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}

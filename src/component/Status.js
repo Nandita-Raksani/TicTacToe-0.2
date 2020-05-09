@@ -11,7 +11,7 @@ const Status = (props) => {
             const winner = isFirstRowCompletedByAPlayer(board);
             if (winner && winner.player) {
                 setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
-                onPlayerWon();
+                onPlayerWon(winner.positions);
             } else {
                 setState((prevState) => ({ ...prevState, gameStatus: Constants.NEXT_PLAYER + (currentPlayer) }));
             }
@@ -24,7 +24,7 @@ const Status = (props) => {
     const isFirstRowCompletedByAPlayer = (board) => {
         const [a, b, c] = [0, 1, 2];
         if (board && board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return { player: board[a] };
+            return { player: board[a], positions: [a, b, c]};
         }
         return null;
     };

@@ -81,6 +81,23 @@ describe(("<Game/> component functionality"), () => {
         });
     });
 
+    it("Should highlight the winning tiles on game won", () => {
+        const positions = [0, 3, 1, 4, 2];
+        simulateButtonClick(positions);
+        expect(wrapper.find(Status).find('label').text()).toBe('Winner is : X');
+        
+        const winningPositions = [0, 1, 2];
+        const tileList = wrapper.find(Tile);
+        tileList.forEach(checkStyles);
+        function checkStyles(item, index) {
+            if (winningPositions.includes(index)) {
+                expect(item.find("button").hasClass('tile-winning')).toBeTruthy();
+            } else {
+                expect(item.find("button").hasClass('tile-winning')).toBeFalsy();
+            }
+        }
+    });
+
     const simulateButtonClick = (board) => {
         board.forEach(position => {
             wrapper.find(Tile).at(position).find('button').simulate('click');
