@@ -35,6 +35,15 @@ const Game = () => {
         setState((prevState) => ({ ...prevState, gameOver: true, winningPositions: winningPosition }));
     }
 
+    const reset = () => {
+        setState({
+            boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE),
+            isNextSymbolX: true,
+            gameOver: false,
+            winningPositions: []
+        });
+    };
+
     return (
         <div>
             <div className={StyleConstants.STATUS}>
@@ -45,6 +54,9 @@ const Game = () => {
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}
             </ul>
+            <div className={StyleConstants.RESTART}>
+                <button className={StyleConstants.RESTART_BUTTON} type="Submit" onClick={() => reset()}>{StyleConstants.RESET}</button>
+            </div>
         </div>
     );
 }

@@ -98,6 +98,19 @@ describe(("<Game/> component functionality"), () => {
         }
     });
 
+    it("Should reset game to initial state on clicking Reset button", () => {
+        const EXPECT_PLAYER_X_INITIALLY = 'Next Player : X';
+        const positions = [0, 3, 1, 4, 2];
+        simulateButtonClick(positions);
+        wrapper.find('button').at(9).simulate('click');
+        const tileList = wrapper.find(Tile);
+        tileList.forEach(tile => {
+            expect(tile.find('button').text()).toBe('');
+            expect(tile.find('button').props()["disabled"]).toBeFalsy();
+        });
+        expect(wrapper.find(Status).find('label').text()).toBe(EXPECT_PLAYER_X_INITIALLY);
+    });
+
     const simulateButtonClick = (board) => {
         board.forEach(position => {
             wrapper.find(Tile).at(position).find('button').simulate('click');
