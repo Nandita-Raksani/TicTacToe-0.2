@@ -142,12 +142,19 @@ describe(("<Status/> functionality"), () => {
         const wrapper = mount(<Status currentPlayer='O' board={board} onPlayerWon={jest.fn()} isGameOver={false}/>);
         expect(wrapper.find('label').text()).toBe(EXPECT_PLAYER_X_WINNER);
     }); 
-
+    
     it("should declare O as winner if UpperRight to LowerLeft diagonal is completely filled by O ", () => {
         const EXPECT_PLAYER_O_WINNER = 'Winner is : O';
         const board = ['X', '', 'O', 'X', 'O', 'X', 'O', '', ''];
         const wrapper = mount(<Status currentPlayer='X' board={board} onPlayerWon={jest.fn()} isGameOver={false}/>);
         expect(wrapper.find('label').text()).toBe(EXPECT_PLAYER_O_WINNER);
+    });
+
+    it("should be draw when all tiles are completely filled and no winner", () => {
+        const EXPECT_GAME_DRAW = 'Game is draw!';
+        const board = ['X', 'O', 'X', 'X', 'X', 'O', 'O', 'X', 'O'];
+        const wrapper = mount(<Status currentPlayer='X' board={board} onPlayerWon={jest.fn()} isGameOver={false}/>);
+        expect(wrapper.find('label').text()).toBe(EXPECT_GAME_DRAW);
     });
 
 }); 
