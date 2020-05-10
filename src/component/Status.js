@@ -4,18 +4,19 @@ import Constants from '../constants/Constants';
 import determineWinner from '../helper/DetermineWinner';
 
 const Status = (props) => {
-    const [state, setState] = useState({});
+    const [gameStatus, setGameStatus] = useState();
 
     const getStatus = () => {
         const { board, currentPlayer } = props;
         const winner = determineWinner(board);
         if (winner && winner.player) {
             hasPlayerWon(winner);
-        } else if (isDraw(board)) {
-            setState((prevState) => ({ ...prevState, gameStatus: Constants.GAME_DRAW }));
-        } else {
-            setState((prevState) => ({ ...prevState, gameStatus: Constants.CURRENT_PLAYER + (currentPlayer) }));
-        }
+        } else
+            if (isDraw(board)) {
+                setGameStatus(Constants.GAME_DRAW);
+            } else {
+                setGameStatus(Constants.CURRENT_PLAYER + (currentPlayer));
+            }
     };
 
     useEffect(() => {
@@ -28,12 +29,12 @@ const Status = (props) => {
     };
 
     const hasPlayerWon = (winner) => {
-        setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
+        setGameStatus(Constants.WINNER + winner.player);
         props.onPlayerWin(winner.positions);
     };
 
     return (
-        <label>{state.gameStatus}</label>
+        <label>{gameStatus}</label>
     );
 }
 Status.propTypes = {

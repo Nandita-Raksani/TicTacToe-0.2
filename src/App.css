@@ -3,14 +3,14 @@
 }
 
 .App-header {
-  font: 25px "Century Gothic", Futura, sans-serif;
+  font: 45px "Century Gothic", Futura, sans-serif;
   background-color: #282c34;
-  min-height: 5vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 5vmin);
   color: white;
   margin-bottom: 20px;
 } 
@@ -56,7 +56,7 @@ button.tile-button[data-symbol-color="O"] {
 }
 
 .status {
-  font: 25px "Century Gothic", Futura, sans-serif;
+  font: 20px "Century Gothic", Futura, sans-serif;
   margin: auto;
   color: #424242;
   margin-bottom: 20px;

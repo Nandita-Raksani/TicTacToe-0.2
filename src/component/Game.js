@@ -8,39 +8,43 @@ import Status from './Status';
 const Game = () => {
     const [board, setBoard] = useState(Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE));
     const [currentPlayer, setCurrentPlayer] = useState(Constants.PLAYER_X);
-    const [gameWinningPositions, setGameWinningPositions] = useState([]);
+    const [gameWinningTiles, setGameWinningTiles] = useState([]);
     const [gameHasWinner, setGameHasWinner] = useState(false);
 
     const renderBoard = () => {
         let tiles = [];
-        for (let position = Constants.INITIAL_TILE_POSITION; position < Constants.NUMBER_OF_TILES; position++) {
+        for (let tile = Constants.INITIAL_TILE_POSITION; tile < Constants.NUMBER_OF_TILES; tile++) {
             tiles.push(
-                <Tile key={position}
-                    onClick={() => handleTileClick(position)}
-                    value={board[position]}
+                <Tile key={tile}
+                    onClick={() => handleCurrentPlayerTurn(tile)}
+                    value={board[tile]}
                     gameHasWinner={gameHasWinner}
-                    isWinningTile={gameWinningPositions && gameWinningPositions.includes(position)} />
+                    isWinningTile={gameWinningTiles && gameWinningTiles.includes(tile)} />
             );
         }
         return tiles;
     }
 
-    const handleTileClick = (position) => {
+    const handleCurrentPlayerTurn = (tile) => {
         const gameBoard = board.slice();
-        gameBoard[position] = currentPlayer;
-        setCurrentPlayer(currentPlayer === Constants.PLAYER_X ? Constants.PLAYER_O : Constants.PLAYER_X);
+        gameBoard[tile] = currentPlayer;
         setBoard(gameBoard);
+        togglePlayer();
     }
 
-    const handlePlayerWon = (winningPosition) => {
-        setGameWinningPositions(winningPosition);
+    const togglePlayer = () => {
+        setCurrentPlayer(currentPlayer === Constants.PLAYER_X ? Constants.PLAYER_O : Constants.PLAYER_X);
+    }
+
+    const handlePlayerWon = (winningTiles) => {
+        setGameWinningTiles(winningTiles);
         setGameHasWinner(true);
     }
 
     const reset = () => {
         setBoard(Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE));
         setCurrentPlayer(Constants.PLAYER_X);
-        setGameWinningPositions([]);
+        setGameWinningTiles([]);
         setGameHasWinner(false);
     };
 
@@ -49,13 +53,14 @@ const Game = () => {
             <div className={StyleConstants.STATUS}>
                 <Status currentPlayer={currentPlayer}
                     board={board}
-                    onPlayerWin={(winningPosition) => handlePlayerWon(winningPosition)} />
+                    onPlayerWin={(winningTiles) => handlePlayerWon(winningTiles)} />
             </div>
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}
             </ul>
             <div className={StyleConstants.RESTART}>
-                <button className={StyleConstants.RESTART_BUTTON} type="Submit" onClick={() => reset()}>{StyleConstants.RESTART_GAME}</button>
+                <button className={StyleConstants.RESTART_BUTTON}
+                    type="Submit" onClick={() => reset()}>{StyleConstants.RESTART_GAME}</button>
             </div>
         </div>
     );
