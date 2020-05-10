@@ -1,5 +1,5 @@
 const StyleConstants = {
-    APP : "App",
+    APP: "App",
     APP_HEADER: "App-header",
     BOARD: "board",
     TILE_BUTTON: "tile-button ",
@@ -7,6 +7,6 @@ const StyleConstants = {
     TILE_WINNING: "tile-winning",
     RESTART: "restart",
     RESTART_BUTTON: "restart-button",
-    RESET: "Reset"
+    RESTART_GAME: "Restart"
 };
 export default StyleConstants; 

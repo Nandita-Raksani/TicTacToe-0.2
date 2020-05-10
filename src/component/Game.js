@@ -6,56 +6,56 @@ import StyleConstants from '../constants/StyleConstants';
 import Status from './Status';
 
 const Game = () => {
-    const [state, setState] = useState({
-        boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE),
-        isNextSymbolX: true,
-        gameOver: false,
-        winningPositions: []
-    });
+    const [board, setBoard] = useState(Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE));
+    const [currentPlayer, setCurrentPlayer] = useState(Constants.PLAYER_X);
+    const [gameWinningPositions, setGameWinningPositions] = useState([]);
+    const [gameHasWinner, setGameHasWinner] = useState(false);
 
     const renderBoard = () => {
-        let tileList = [];
+        let tiles = [];
         for (let position = Constants.INITIAL_TILE_POSITION; position < Constants.NUMBER_OF_TILES; position++) {
-            tileList.push(<li key={position}>
-                <Tile onClick={() => handleTileClick(position)} value={state.boardArray[position]}
-                    isGameOver={state.gameOver}
-                    isWinning={state.winningPositions && state.winningPositions.includes(position)} />
-            </li>);
+            tiles.push(
+                <Tile key={position}
+                    onClick={() => handleTileClick(position)}
+                    value={board[position]}
+                    gameHasWinner={gameHasWinner}
+                    isWinningTile={gameWinningPositions && gameWinningPositions.includes(position)} />
+            );
         }
-        return tileList;
+        return tiles;
     }
 
     const handleTileClick = (position) => {
-        const boardArray = state.boardArray.slice();
-        boardArray[position] = state.isNextSymbolX ? Constants.SYMBOL_X : Constants.SYMBOL_O;
-        setState((prevState) => ({ ...prevState, boardArray: boardArray, isNextSymbolX: !state.isNextSymbolX }));
+        const gameBoard = board.slice();
+        gameBoard[position] = currentPlayer;
+        setCurrentPlayer(currentPlayer === Constants.PLAYER_X ? Constants.PLAYER_O : Constants.PLAYER_X);
+        setBoard(gameBoard);
     }
 
     const handlePlayerWon = (winningPosition) => {
-        setState((prevState) => ({ ...prevState, gameOver: true, winningPositions: winningPosition }));
+        setGameWinningPositions(winningPosition);
+        setGameHasWinner(true);
     }
 
     const reset = () => {
-        setState({
-            boardArray: Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE),
-            isNextSymbolX: true,
-            gameOver: false,
-            winningPositions: []
-        });
+        setBoard(Array(Constants.NUMBER_OF_TILES).fill(Constants.EMPTY_VALUE));
+        setCurrentPlayer(Constants.PLAYER_X);
+        setGameWinningPositions([]);
+        setGameHasWinner(false);
     };
 
     return (
         <div>
             <div className={StyleConstants.STATUS}>
-                <Status currentPlayer={state.isNextSymbolX ? Constants.SYMBOL_X : Constants.SYMBOL_O}
-                    board={state.boardArray}
+                <Status currentPlayer={currentPlayer}
+                    board={board}
                     onPlayerWin={(winningPosition) => handlePlayerWon(winningPosition)} />
             </div>
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}
             </ul>
             <div className={StyleConstants.RESTART}>
-                <button className={StyleConstants.RESTART_BUTTON} type="Submit" onClick={() => reset()}>{StyleConstants.RESET}</button>
+                <button className={StyleConstants.RESTART_BUTTON} type="Submit" onClick={() => reset()}>{StyleConstants.RESTART_GAME}</button>
             </div>
         </div>
     );

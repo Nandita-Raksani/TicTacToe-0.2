@@ -14,7 +14,7 @@ const Status = (props) => {
         } else if (isDraw(board)) {
             setState((prevState) => ({ ...prevState, gameStatus: Constants.GAME_DRAW }));
         } else {
-            setState((prevState) => ({ ...prevState, gameStatus: Constants.NEXT_PLAYER + (currentPlayer) }));
+            setState((prevState) => ({ ...prevState, gameStatus: Constants.CURRENT_PLAYER + (currentPlayer) }));
         }
     };
 
