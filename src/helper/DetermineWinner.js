@@ -49,13 +49,12 @@ const isUpperRightToLowerLeftDiagonalCompletedByAPlayer = (board) => {
 
 const isDiagonalCompletedByAPlayer = (board) => {
     return isUpperLeftToLowerRightDiagonalCompletedByAPlayer(board)
-      || isUpperRightToLowerLeftDiagonalCompletedByAPlayer(board);
-  };
+        || isUpperRightToLowerLeftDiagonalCompletedByAPlayer(board);
+};
 
 const isPositionsOccupiedBySamePlayer = (board, positions) => {
-    const [a, b, c] = positions;
-    if (board && board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return { player: board[a], positions: [a, b, c] };
+    if (positions.map((position) => board[position]).every((value, index, arr) => value && value === arr[0])) {
+        return { player: board[positions[Constants.INITIAL_TILE_POSITION]], positions: positions };
     }
     return null;
 };

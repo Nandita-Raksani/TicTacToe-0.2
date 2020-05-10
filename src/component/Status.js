@@ -6,28 +6,30 @@ import determineWinner from '../helper/DetermineWinner';
 const Status = (props) => {
     const [state, setState] = useState({});
 
-    useEffect(() => {
-        const getStatus = () => {
-            const { board, currentPlayer, onGameDrawOrWon } = props;
-            const winner = determineWinner(board);
-            const draw = isDraw(board);
-            if (winner && winner.player) {
-                setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
-                onGameDrawOrWon(winner.positions);
-            } else if (draw) {
-                setState((prevState) => ({ ...prevState, gameStatus: Constants.GAME_DRAW }));
-                onGameDrawOrWon();
-            } else {
-                setState((prevState) => ({ ...prevState, gameStatus: Constants.NEXT_PLAYER + (currentPlayer) }));
-            }
-        };
-        if (!props.isGameOver) {
-            getStatus();
+    const getStatus = () => {
+        const { board, currentPlayer } = props;
+        const winner = determineWinner(board);
+        if (winner && winner.player) {
+            hasPlayerWon(winner);
+        } else if (isDraw(board)) {
+            setState((prevState) => ({ ...prevState, gameStatus: Constants.GAME_DRAW }));
+        } else {
+            setState((prevState) => ({ ...prevState, gameStatus: Constants.NEXT_PLAYER + (currentPlayer) }));
         }
-    }, [props])
+    };
+
+    useEffect(() => {
+        getStatus();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.board])
 
     const isDraw = (board) => {
         return board.indexOf(Constants.EMPTY_VALUE) === Constants.INDEX_NOT_FOUND;
+    };
+
+    const hasPlayerWon = (winner) => {
+        setState((prevState) => ({ ...prevState, gameStatus: Constants.WINNER + winner.player }));
+        props.onPlayerWin(winner.positions);
     };
 
     return (
@@ -37,7 +39,6 @@ const Status = (props) => {
 Status.propTypes = {
     currentPlayer: PropTypes.string.isRequired,
     board: PropTypes.array.isRequired,
-    isGameOver: PropTypes.bool.isRequired,
-    onGameDrawOrWon: PropTypes.func.isRequired
+    onPlayerWin: PropTypes.func.isRequired
 };
 export default Status; 

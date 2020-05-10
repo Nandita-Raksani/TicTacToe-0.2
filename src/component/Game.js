@@ -19,7 +19,7 @@ const Game = () => {
             tileList.push(<li key={position}>
                 <Tile onClick={() => handleTileClick(position)} value={state.boardArray[position]}
                     isGameOver={state.gameOver}
-                    isWinning={(state.winningPositions && state.winningPositions.includes(position) ? true : false)} />
+                    isWinning={state.winningPositions && state.winningPositions.includes(position)} />
             </li>);
         }
         return tileList;
@@ -48,8 +48,8 @@ const Game = () => {
         <div>
             <div className={StyleConstants.STATUS}>
                 <Status currentPlayer={state.isNextSymbolX ? Constants.SYMBOL_X : Constants.SYMBOL_O}
-                    board={state.boardArray} isGameOver={state.gameOver}
-                    onGameDrawOrWon={(winningPosition) => handlePlayerWon(winningPosition)} />
+                    board={state.boardArray}
+                    onPlayerWin={(winningPosition) => handlePlayerWon(winningPosition)} />
             </div>
             <ul className={StyleConstants.BOARD}>
                 {renderBoard()}
