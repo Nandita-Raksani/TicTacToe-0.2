@@ -11,12 +11,11 @@ const Status = (props) => {
         const winner = determineWinner(board);
         if (winner && winner.player) {
             hasPlayerWon(winner);
-        } else
-            if (isDraw(board)) {
-                setGameStatus(Constants.GAME_DRAW);
-            } else {
-                setGameStatus(Constants.CURRENT_PLAYER + (currentPlayer));
-            }
+        } else if (isDraw(board)) {
+            setGameStatus(Constants.GAME_DRAW);
+        } else {
+            setGameStatus(Constants.CURRENT_PLAYER + (currentPlayer));
+        }
     };
 
     useEffect(() => {

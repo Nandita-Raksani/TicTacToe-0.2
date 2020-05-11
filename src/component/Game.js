@@ -49,18 +49,23 @@ const Game = () => {
     };
 
     return (
-        <div>
-            <div className={StyleConstants.STATUS}>
-                <Status currentPlayer={currentPlayer}
-                    board={board}
-                    onPlayerWin={(winningTiles) => handlePlayerWon(winningTiles)} />
-            </div>
-            <ul className={StyleConstants.BOARD}>
-                {renderBoard()}
-            </ul>
-            <div className={StyleConstants.RESTART}>
-                <button className={StyleConstants.RESTART_BUTTON}
-                    type="Submit" onClick={() => reset()}>{StyleConstants.RESTART_GAME}</button>
+        <div className={StyleConstants.APP}>
+            <header className={StyleConstants.APP_HEADER}>
+                {Constants.APP_TITLE}
+            </header>
+            <div>
+                <div className={StyleConstants.STATUS}>
+                    <Status currentPlayer={currentPlayer}
+                        board={board}
+                        onPlayerWin={(winningTiles) => handlePlayerWon(winningTiles)} />
+                </div>
+                <ul className={StyleConstants.BOARD}>
+                    {renderBoard()}
+                </ul>
+                <div className={StyleConstants.RESTART}>
+                    <button className={StyleConstants.RESTART_BUTTON}
+                        type="Submit" onClick={() => reset()}>{StyleConstants.RESTART_GAME}</button>
+                </div>
             </div>
         </div>
     );

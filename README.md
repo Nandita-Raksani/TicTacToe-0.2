@@ -16,7 +16,7 @@ This game is developed using React in Test Driven Development approach.
 1)	Display an empty game board with 9 tiles
 2)	Player X will always be given first move and selects a tile within the board
 3)	Player O will be given alternate move and selects a tile
-4)	Status of the game will be displayed E.g. “Next turn is : X”
+4)	Status of the game will be displayed E.g. “Current Player : X”
 5)	Players will not be allowed to play on same position
 6)	Declare player as winner if horizontally all tiles in first row are taken by same player and winning row be highlighted
 7)	Declare player as winner if horizontally all tiles in second row are taken by same player Declare player as winner if horizontally all tiles in third row are taken by same player
@@ -44,7 +44,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+To get the application running locally:
+
+-   Clone this repo and open in your favourite IDE
+
+If you are using npm package manager follow the below commands in project directory of your terminal
+
+### `npm install`
+
+Install all project dependencies
 
 ### `npm start`
 
@@ -66,8 +74,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 # Reports
 
@@ -92,7 +98,6 @@ PASS  src/test/Tile.test.js
 |StyleConstants.js  |      100 |      100 |      100 |      100 |                   |
 |src/helper          |      100 |      100 |      100 |      100 |                   |
 | DetermineWinner.js |      100 |      100 |      100 |      100 |                   |
----------------------|----------|----------|----------|----------|-------------------|
 
 Test Suites: 4 passed, 4 total
 Tests:       42 passed, 42 total
